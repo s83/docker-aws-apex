@@ -1,8 +1,11 @@
-FROM mhart/alpine-node:4.3
+FROM python:3.6-alpine
 
-RUN apk add --update jq curl python py-pip make bash \
-  libc6-compat python-dev gcc musl-dev libffi-dev openssl-dev git
+RUN apk add --update --no-cache \
+  jq \
+  curl \
+  bash \
+  git
+
 RUN curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh && apex upgrade
-RUN pip install --upgrade pip
 RUN pip install awscli
 RUN pip install awscurl
